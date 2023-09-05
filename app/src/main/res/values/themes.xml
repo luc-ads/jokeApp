@@ -14,5 +14,10 @@
     <style name="Theme.JokeApp.AppbarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar"/>
     <style name="Theme.JokeApp.PopupOverlay" parent="ThemeOverlay.AppCompat.Light"/>
 
-
+    <style name="Theme.AppCompat.Starting" parent="Theme.SplashScreen">
+        <item name="windowSplashScreenBackground">@color/blue_700</item>
+        <item name="windowSplashScreenAnimatedIcon">@drawable/logo</item>
+        <item name="windowSplashScreenAnimationDuration">200</item>
+        <item name="postSplashScreenTheme">@style/Theme.JokeApp</item>
+    </style>
 </resources>
