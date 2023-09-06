@@ -8,19 +8,19 @@
     <fragment
         android:id="@+id/nav_home"
         android:label="@string/menu_home"
-        android:name="com.example.jokeapp.HomeFragment"
+        android:name="com.example.jokeapp.view.HomeFragment"
         tools:layout="@layout/fragment_home"/>
 
     <fragment
         android:id="@+id/nav_about"
         android:label="@string/menu_about"
-        android:name="com.example.jokeapp.AboutFragment"
+        android:name="com.example.jokeapp.view.AboutFragment"
         tools:layout="@layout/fragment_about"/>
 
     <fragment
         android:id="@+id/nav_joke_day"
         android:label="@string/menu_joke_day"
-        android:name="com.example.jokeapp.JokeDayFragment"
+        android:name="com.example.jokeapp.view.JokeDayFragment"
         tools:layout="@layout/fragment_joke_day"/>
 
 </navigation>
