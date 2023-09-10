@@ -16,11 +16,9 @@ class HomePresenter(
     private val dataSource: CategoryRemoteDataSource
 ): ListCategoryCallback {
 
-
     fun findAllCategories() {
         dataSource.findAllCategories(this)
     }
-
 
     override fun onSuccess(response: List<String>) {
 //        val recyclerView = view?.findViewById<RecyclerView>(R.id.rv_main)
