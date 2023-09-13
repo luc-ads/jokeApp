@@ -4,5 +4,4 @@ interface ListCategoryCallback {
 
     fun onSuccess(response: List<String>)
     fun onFailure(error: String)
-    fun onLoading(isLoading: Boolean)
-}
+    fun onLoading(isLoading: Boolean) }
