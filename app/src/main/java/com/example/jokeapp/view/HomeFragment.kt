@@ -6,8 +6,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ProgressBar
 import android.widget.Toast
-import androidx.core.content.ContentProviderCompat
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.jokeapp.R
@@ -41,15 +41,24 @@ class HomeFragment: Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        presenter.findAllCategories()
-        val adapter = CategoryAdapter(
-            listCategories
-        )
+        progressBar = view.findViewById(R.id.progressBar)
+
+        if (listCategories.isEmpty()) {
+            presenter.findAllCategories()
+            onLoading(true)
+        }
+        val adapter =
+            CategoryAdapter(listCategories) { name ->
+                val bundle = Bundle()
+                bundle.putString("category", name)
+                findNavController().navigate(R.id.action_nav_home_to_nav_joke, bundle)
+            }
+
         val recyclerView = view.findViewById<RecyclerView>(R.id.rv_main)
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
         recyclerView.adapter = adapter
 
-        progressBar = view.findViewById(R.id.progressBar)
+
     }
 
     fun showCategories(response: List<CategoryJoke>) {
@@ -63,7 +72,6 @@ class HomeFragment: Fragment() {
 
     fun showError(error: String) {
         Toast.makeText(requireContext(), error, Toast.LENGTH_SHORT).show()
-
     }
 
     fun onLoading(isLoading: Boolean) {

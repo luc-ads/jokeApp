@@ -1,5 +1,6 @@
 package com.example.jokeapp.presentation
 
+import android.graphics.Color
 import android.os.Handler
 import android.os.Looper
 import android.widget.Toast
@@ -21,14 +22,22 @@ class HomePresenter(
     }
 
     override fun onSuccess(response: List<String>) {
-//        val recyclerView = view?.findViewById<RecyclerView>(R.id.rv_main)
-//
-//        if (response.isNotEmpty()) {
-//            listCategories.addAll(response)
-//            recyclerView?.adapter?.notifyDataSetChanged()
-//        }
+        val start = 40
+        val end =  190
+        val diff = (end - start) / response.size
 
-        val categories = response.map { CategoryJoke(it, 0xFFFace6e) }
+        val categories = response.mapIndexed {
+            index,
+            s ->
+            val hsv = floatArrayOf(
+                start + (diff * index).toFloat(),
+                100.0f,
+                100.0f
+            )
+            CategoryJoke(s, Color.HSVToColor(hsv).toLong())
+        }
+
+
         view.showCategories(categories)
         onLoading(false)
     }
